@@ -1,0 +1,94 @@
+@import "~bootstrap/scss/bootstrap";
+
+@font-face {
+  font-family: "Yantramanav Medium";
+  src: url("../fonts/Yantramanav-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Russo One Regular";
+  src: url("../fonts/RussoOne-Regular.ttf");
+}
+
+$background_gray: #04060c;
+$title_red: #fc141c;
+$filter_pink: #fc0404;
+
+body {
+  min-height: 100vh;
+  margin: 0px;
+  padding: 30px 70px;
+  background-color: $background_gray;
+}
+
+nav {
+  margin: 0px !important;
+  padding: 0px 30px;
+}
+#page_title {
+  color: $title_red;
+}
+//font
+.title_font {
+  font-family: "Yantramanav Medium";
+}
+
+// nav search
+#user_search {
+  border-radius: 20px;
+  background-color: transparent;
+  border: 2px solid white;
+  padding-left: 5px;
+}
+
+// page content
+#pageContent {
+  color: white;
+}
+
+//welcome
+.welcome_text {
+}
+
+#welcome_title {
+  font-family: "Russo One Regular";
+}
+
+// game cards
+.game_card {
+  background-color: transparent !important;
+}
+
+.card-img-top {
+  height: 200px;
+  object-position: top;
+  object-fit: fill;
+}
+
+.card-body {
+  margin: 0px;
+  padding: 0.7em 0px;
+}
+
+.game_title {
+  font-family: "Russo One Regular";
+}
+
+// footer
+footer {
+  color: white;
+}
+
+// detail page
+.game_cover {
+  margin: 0px;
+  padding: 3em 0px;
+  max-width: 100%;
+  object-position: top;
+  object-fit: fill;
+}
+
+.game_site_btn {
+  color: white;
+  background-color: $filter_pink;
+}

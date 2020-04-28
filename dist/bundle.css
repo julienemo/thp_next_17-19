@@ -9895,12 +9895,51 @@ nav {
   padding: 0px 30px;
 }
 
-#page_title {
-  color: #fc141c;
+.stick {
+  margin: 0px;
+  padding: 0px;
+}
+
+.stick_bottom {
+  margin: 2em 0px 0px 0px;
+  padding: 0px;
+}
+
+#separator {
+  height: 5px;
+  width: 150px;
+  background-color: #fc141c;
+}
+
+.external:hover {
+  text-decoration: none;
+}
+
+.fa-search {
+  background-image: url(cc51b702c98798cd916ea5a3a8ca8b54.svg);
+  height: 20px;
+  width: 20px;
 }
 
 .title_font {
-  font-family: "Yantramanav Medium";
+  font-family: "Russo One Regular";
+}
+
+.red {
+  color: #fc141c;
+}
+
+.white {
+  color: white;
+}
+
+.red-bg {
+  background-color: #fc0404;
+}
+
+.btn_input {
+  border: none !important;
+  border: 0px !important;
 }
 
 #user_search {
@@ -9910,22 +9949,15 @@ nav {
   padding-left: 5px;
 }
 
-#pageContent {
-  color: white;
-}
-
-#welcome_title {
-  font-family: "Russo One Regular";
-}
-
 .game_card {
   background-color: transparent !important;
+  padding: 0.8em;
 }
 
 .card-img-top {
   height: 200px;
   object-position: top;
-  object-fit: fill;
+  object-fit: cover;
 }
 
 .card-body {
@@ -9941,15 +9973,62 @@ footer {
   color: white;
 }
 
-.game_cover {
-  margin: 0px;
+.game_cover_image {
+  margin: 3em 0px;
   padding: 3em 0px;
-  max-width: 100%;
-  object-position: top;
+  width: 100% !important;
+  height: 500px !important;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+#game_site_btn {
+  margin: 0 3em 3em 0;
+  padding: 0.5em 1em;
+  display: flex;
+  justify-content: flex-end;
+  border: none;
+  font-size: 1.3em;
+}
+
+#game_site_btn:hover {
+  text-decoration: none;
+}
+
+#game_trailer {
+  min-height: 200px;
+  width: 50%;
   object-fit: fill;
 }
 
-.game_site_btn {
-  color: white;
-  background-color: #fc0404;
+iframe {
+  object-fit: scale-down;
+  border: none;
+}
+
+.screenshots {
+  width: 100%;
+  margin: 0px 0px 1em 0px;
+  object-position: top;
+  object-fit: scale-down;
+}
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
 }

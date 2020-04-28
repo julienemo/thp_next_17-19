@@ -6,24 +6,33 @@
   </head>
 
   <body>
-    <!--     <a href="#">Home</a> -->
-    <nav id="nav" class="row justify-content-between m-0 p-0">
-      <div id="page_title" class="col m-0 p-0 title_font">
+    <nav id="nav" class="row stick justify-content-between">
+      <div id="page_title" class="col m-0 p-0 title_font red">
         <h1>The Hyper Progame</h1>
       </div>
-      <form class="form-inline col col-4 m-0 p-0">
-        <input
-          class="form-control mr-sm-2 w-100"
-          type="search"
-          placeholder="Search"
-          id="user_search"
-        />
-      </form>
+      <div class="form-group has-search">
+        <span class="fa-search"></span>
+        <input type="text" class="form-control" placeholder="Search" />
+      </div>
     </nav>
 
-    <section id="pageContent"></section>
+    <section id="pageContent" class="white"></section>
     <footer class="mx-0 p-0 my-3">
-      Julie Kwok @2020 - Fictional Website for exercice
+      <div class="row">
+        <div id="separator"></div>
+      </div>
+      <div class="row stick">
+        <p class="pt-3">
+          Julie Kwok @2020 - Fictional Website for exercice (thanks
+          <a
+            class="external white"
+            href="https://fontawesome.com/"
+            target="_blank"
+            >Font Awesome</a
+          >
+          for the icons)
+        </p>
+      </div>
     </footer>
     <script src="dist/bundle.js"></script>
   </body>

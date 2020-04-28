@@ -17,8 +17,7 @@ with both new and existing partners, industry executives, gamers, and social inf
       if (argument) {
         finalURL = apiUrl + argument;
       }
-      console.log(argument);
-      console.log(finalURL);
+
       fetch(`${finalURL}`)
         .then((response) => response.json())
         .then((response) => {

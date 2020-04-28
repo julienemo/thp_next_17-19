@@ -29,15 +29,12 @@ export const PageDetail = (argument) => {
   const preparePage = () => {
     let cleanedArgument = argument.replace(/\s+/g, "-");
 
-    let articleContent = "";
-
-    const showPublishers = (publishers) => {
-      return publishers.map((el) => `${el.name}, ${el.slug}, (${el.slug})`);
-    };
-    const showCategory = (category, categoryName) => {};
-
     const showPurchase = (stores) => {
-      return stores.map((store) => `${store.url}, ${store.store.name}`);
+      let innerHTML = "";
+      stores.forEach((store) => {
+        innerHTML += `<a href="${store.url}" target="_blank" class="external white">${store.store.name}</a>, `;
+      });
+      return innerHTML;
     };
 
     const countVotes = (ratings) => {
@@ -117,7 +114,7 @@ export const PageDetail = (argument) => {
 
           pageContent.innerHTML = `
             <section class="page-detail mt-5">
-              <div class="article stick">
+              <div id="article" class="stick">
                 <div class="row game_cover_image" style='background-image: url("${background_image}");'>
                   <a class="external" href="${website}" target="_blank"> <button id="game_site_btn" class="title_font red-bg white btn_input">Check Website  >> </button></a>
                 </div>
@@ -168,53 +165,51 @@ export const PageDetail = (argument) => {
                     <p>${showSameCategory(genres, "genres")}</p>
                   </div>
                 </div>
-              </div>
-              <div class="row stick" >
-                <div class="col stick col-12">
-                  <h3 class=" title_font red">BUY</h3></div>
-                <div class="col stick col-12">
-                  <p>${showPurchase(stores)}</p>
-                </div>
-              </div>
 
-              <div class="row stick" >
-                <div class="col stick col-12">
-                  <h3 class="title_font red">TRAILER</h3>
+                <div class="row stick" >
+                  <div class="col stick col-12">
+                    <h3 class=" title_font red">BUY</h3>
+                  </div>
+                  <div id="stores" class="col stick col-12">
+                    <p>${showPurchase(stores)}</p>
+                  </div>
                 </div>
-                <div  id="trailer" class="col stick col-12">
-                  <p classs="font_title white">This game has no trailer clip</p>
+
+                <div class="row stick" >
+                  <div class="col stick col-12">
+                    <h3 class="title_font red">TRAILER</h3>
+                  </div>
+                  <div id="trailer" class="col stick col-12">
+                    <p class="font_title white">This game has no trailer clip</p>
+                  </div>
+                </div>
+
+                <div id="screenshots" class="row stick">
+                  <div class="col stick col-12">
+                    <h3 class="title_font red">SCREENSHOTS</h3>
+                  </div>
+                </div>
+
+                <div id="youtube" class="row stick">
+                  <div class="col stick col-12">
+                    <h3 class="title_font red">YOUTUBE</h3>
+                  </div>
                 </div>
               </div>
-
-              <div id="screenshots" class="row stick">
-                <div class="col stick col-12">
-                  <h3 class="title_font red">SCREENSHOTS</h3>
-                </div>
-              </div>
-
-              <div id="youtube" class="row stick">
-                <div class="col stick col-12">
-                  <h3 class="title_font red">YOUTUBE</h3>
-                </div>
-              </div>
-
             </section>`;
           if (publishers.length > 0) {
             document.getElementById(
               "publishers"
             ).innerHTML = `${showSameCategory(publishers, "publishers")}`;
           }
-          if (clip) {
-            document.getElementById("trailer").innerHTML = `
 
-            
+          if (clip) {
+            document.getElementById("trailer").innerHTML = `           
               <video id="game_trailer" class="stick" controls>
                 <source src="${clip.clips["320"]}" type="video/mp4">
                 Your browser does not support the video tag.
-              </video>
-            </div>`;
+              </video>`;
           }
-          console.log("page filled");
           return { slug: slug, name: name };
         })
         .then((response) => {

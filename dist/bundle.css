@@ -9900,6 +9900,10 @@ nav {
   padding: 0px;
 }
 
+a {
+  color: white;
+}
+
 .stick_bottom {
   margin: 2em 0px 0px 0px;
   padding: 0px;

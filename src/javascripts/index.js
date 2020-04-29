@@ -4,18 +4,22 @@ import "../styles/style.scss";
 import { routes } from "./Routes";
 import { cleanDate } from "./tools";
 import { submitSearch } from "./Search";
-import { flyingPage } from "./Animation";
+import { fillSideBar } from "./Sidebar";
 
 var moment = require("moment");
+
 const now = new Date();
 const timeFrom = cleanDate(now);
 const timeTo = cleanDate(moment(now).add(1, "year"));
 const timeWeek = cleanDate(moment(now).add(7, "days"));
 
-const visualLimit = 4; // show not more than 4 screenshots and 4 videos
+const visualLimit = 4; // show not more than 4 screenshots, 4 videos, 4 similar games
 const entryLimit = 27; // show not more than 27 games per query
+const platformLimit = 7; // show only 7 platforms with most games in filter
+
 export const limitPerPage = 9; // show 9 games per "page"
 export const apiUrl = `https://api.rawg.io/api/games`;
+export const platformUrl = `https://api.rawg.io/api/platforms?ordering=-games_count&page=1&page_size=${platformLimit}`;
 export const newReleaseArgument = `?dates=${timeFrom},${timeTo}&ordering=-released&page=1&page_size=${entryLimit}`;
 export const thisWeekArgument = `?dates=${timeFrom},${timeWeek}&ordering=-released&page=1&page_size=${entryLimit}`;
 export const allTimeBestArgument = `?ordering=-rating&page=1&page_size=${entryLimit}`;
@@ -38,16 +42,20 @@ export const handleException = (error) => {
     "<p class='white title_font'>Sorry, an error occurred. Your games can't load. Please verify spelling and retry, or contact the Progame organizer.</p>";
 };
 
-let pageArgument;
-
 const searchForm = document.getElementById("search_form");
 const searchInput = document.getElementById("search_input");
 
 const setRoute = () => {
   let path = window.location.hash.substring(1).split("/");
-  pageArgument = path[1] || "";
-  var pageContent = document.getElementById("pageContent");
-  routes[path[0]](pageArgument);
+  let platformSpecified;
+  let platform = window.location.hash.match(/platforms=(\w*)/);
+  if (platform === null) {
+    platformSpecified = false;
+  } else {
+    platformSpecified = platform[1];
+  }
+  let pageArgument = path[1] || "";
+  routes[path[0]](pageArgument, platformSpecified);
   return true;
 };
 
@@ -61,3 +69,5 @@ searchForm.addEventListener("submit", (e) => {
   e.preventDefault;
   submitSearch(searchInput);
 });
+
+fillSideBar(thisWeekArgument, allTimeBestArgument);

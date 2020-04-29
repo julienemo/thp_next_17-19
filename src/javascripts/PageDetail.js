@@ -5,8 +5,10 @@ import {
   handleException,
   visualDefault,
 } from "./index";
+
 import { cleanDate, noImage } from "./tools";
-import { observerAnimation } from "./Animation";
+import { observerAnimation, backToTop } from "./Animation";
+import { fillSingleCard } from "./PageList";
 
 export const showPlatforms = (platforms) => {
   if (platforms == undefined || platforms == "" || platforms == "null") {
@@ -15,7 +17,7 @@ export const showPlatforms = (platforms) => {
   let platformInnerHTML = "";
   platforms.forEach((el) => {
     platformInnerHTML += `
-    <a href="#games/platform=${el.platform.slug}" class="internal">
+    <a href="#games/platforms=${el.platform.id}" class="internal">
       ${el.platform.name}
     </a> `;
   });
@@ -112,12 +114,24 @@ export const PageDetail = (argument) => {
         });
     };
 
+    const fetchSimilar = (gameId) => {
+      fetch(`${apiUrl}/${gameId}/suggested${visualDefault}`)
+        .then((response) => response.json())
+        .then((response) => {
+          let games = response.results;
+          let similarZone = document.getElementById("similar");
+          games.forEach((game) => {
+            similarZone.innerHTML += fillSingleCard(game);
+          });
+        });
+    };
     const fetchGame = (argument) => {
       let finalURL = apiUrl + "/" + argument;
       fetch(`${finalURL}`)
         .then((response) => response.json())
         .then((response) => {
           let {
+            id,
             slug,
             reddit_description,
             website,
@@ -135,8 +149,8 @@ export const PageDetail = (argument) => {
             ratings,
             stores,
           } = response;
-
-          pageContent.innerHTML = `
+          backToTop();
+          contentZone.innerHTML = `
             <section class="page-detail mt-5">
               <div id="article" class="stick">
                 <div class="row game_cover_image" style='background-image: url("${noImage(
@@ -223,6 +237,12 @@ export const PageDetail = (argument) => {
                     <h3 class="title_font red">YOUTUBE</h3>
                   </div>
                 </div>
+
+                <div id="similar" class="row game_attribute stick">
+                  <div class="col stick col-12">
+                    <h3 class="title_font red">SIMILAR GAMES</h3>
+                  </div>
+                </div>
               </div>
             </section>`;
 
@@ -242,14 +262,20 @@ export const PageDetail = (argument) => {
           if (website === null || website === undefined || website === "") {
             document.getElementById("game_website").classList.add("d-none");
           }
-          return { slug: slug, name: name };
+          return { slug: slug, name: name, id: id };
         })
         .then((response) => {
           fetchImages(response.slug, response.name);
-          return response.slug;
+          return response;
         })
         .then((response) => {
-          fetchYoutube(response);
+          fetchYoutube(response.slug);
+          console.log(response);
+          return response;
+        })
+        .then((response) => {
+          console.log(response.id);
+          fetchSimilar(response.id);
         })
         .then(() => {
           const observables = ".game_attribute";

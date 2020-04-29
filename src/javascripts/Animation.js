@@ -29,3 +29,11 @@ export const observerAnimation = (observables) => {
     observer.observe(item);
   });
 };
+
+export const backToTop = () => {
+  window.scrollTo({
+    top: 100,
+    left: 100,
+    behavior: "smooth",
+  });
+};

@@ -18,13 +18,25 @@ let b = "2018-12-21";
 
 console.log(a > b);
 
-let c = [1, 2, 3, 4, 5, 6, 7];
+let c = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 let d = c.slice(0, 45); // won't throw out of range error!
 let e = c.slice(0, 4);
-console.log(d);
+let f = c.slice(4, 8);
+console.log(c);
+//console.log(d);
 console.log(e);
+console.log(f);
 
 var moment = require("moment");
 let s = "2016-09-29T03:20:02Z";
 let p = moment(s).format("YYYY/MM/DD");
 console.log(p);
+
+let future_time = moment().add(1, "years").format().slice(0, 10);
+console.log(future_time);
+
+let myotherString =
+  "file:///home/julie/Documents/mydoc/thp_next/20200428-30/index.html?platforms=171?platforms=171?platforms=18?platforms=171";
+
+let result = myotherString.match(/(platforms=\w*&)/);
+console.log(result);

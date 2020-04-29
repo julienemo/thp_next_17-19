@@ -1,5 +1,6 @@
 import { showPlatforms } from "./PageDetail";
-import { apiUrl, handleException } from "./index";
+import { apiUrl, handleException, defaultImg } from "./index";
+import { noImage } from "./tools";
 
 export const PageList = (argument = "") => {
   const welcome = `<div id="welcome_section" class="mx-0 my-3 p-0"><h1 id="welcome_title" class="title_font">Welcome,</h1><p class="welcome_text">The Hyper Progame is the world’s premier event for computer and video games and related products. At The Hyper Progame,
@@ -28,9 +29,10 @@ with both new and existing partners, industry executives, gamers, and social inf
               <div class="card game_card col-4">
                 <a href="#game/${
                   article.slug
-                }"><img class="card-img-top" src="${
-              article.background_image
-            }" alt="cover_image_${article.slug}"></a>
+                }"><img class="card-img-top" src="${noImage(
+              article.background_image,
+              defaultImg
+            )}" alt="cover_image_${article.slug}"></a>
                 <div class="card-body">
                   <h5 class="card-title m-0 p-0 game_title">${article.name}</h5>
                   <p class="card-text">${showPlatforms(article.platforms)}</p>

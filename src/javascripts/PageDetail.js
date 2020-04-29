@@ -2,6 +2,9 @@ import { apiUrl, contentZone, handleException, limit } from "./index";
 import { cleanDate } from "./tools";
 
 export const showPlatforms = (platforms) => {
+  if (platforms === null) {
+    return "";
+  }
   let platformInnerHTML = "";
   platforms.forEach((el) => {
     platformInnerHTML += `
@@ -44,7 +47,7 @@ export const PageDetail = (argument) => {
     };
 
     const fetchImages = (gameSlug, gameName) => {
-      fetch(`${apiUrl}/${gameSlug}/screenshots`)
+      fetch(`https://api.rawg.io/api/games/${gameSlug}/screenshots`)
         .then((response) => response.json())
         .then((response) => {
           let imgs = response.results.slice(0, limit);

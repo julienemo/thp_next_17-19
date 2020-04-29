@@ -14,7 +14,7 @@ const timeWeek = cleanDate(moment(now).add(7, "days"));
 
 const visualLimit = 4; // show not more than 4 screenshots and 4 videos
 const entryLimit = 27; // show not more than 27 games per query
-
+export const limitPerPage = 9; // show 9 games per "page"
 export const apiUrl = `https://api.rawg.io/api/games`;
 export const newReleaseArgument = `?dates=${timeFrom},${timeTo}&ordering=-released&page=1&page_size=${entryLimit}`;
 export const thisWeekArgument = `?dates=${timeFrom},${timeWeek}&ordering=-released&page=1&page_size=${entryLimit}`;
@@ -47,7 +47,6 @@ const setRoute = () => {
   let path = window.location.hash.substring(1).split("/");
   pageArgument = path[1] || "";
   var pageContent = document.getElementById("pageContent");
-  console.log(pageArgument);
   routes[path[0]](pageArgument);
   return true;
 };

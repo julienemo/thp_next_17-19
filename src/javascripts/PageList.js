@@ -4,6 +4,7 @@ import {
   handleException,
   defaultImg,
   newReleaseArgument,
+  limitPerPage,
 } from "./index";
 import { noImage } from "./tools";
 import { observerAnimation } from "./Animation";
@@ -32,17 +33,23 @@ with both new and existing partners, industry executives, gamers, and social inf
         .then((response) => response.json())
         .then((response) => {
           let result = response.results;
-          result.forEach((article) => {
-            articles += `
+          let i = 0;
+
+          const showNine = (i, result) => {
+            let page = result.slice(i, i + 9);
+            console.log(page);
+            let innerHTML = "";
+            page.forEach((article) => {
+              innerHTML += `
               <div id="${
                 article.slug || article.id
               }" class="card game_card col-4">
                 <a href="#game/${
                   article.slug || article.id
                 }"><img class="card-img-top" src="${noImage(
-              article.background_image,
-              defaultImg
-            )}" alt="cover_image_${article.slug}"></a>
+                article.background_image,
+                defaultImg
+              )}" alt="cover_image_${article.slug}"></a>
                 <div class="card-body">
                   <h5 class="card-title m-0 p-0 game_title">${article.name}</h5>
                   <p class="card-text">${showPlatforms(article.platforms)}</p>
@@ -50,7 +57,22 @@ with both new and existing partners, industry executives, gamers, and social inf
                 </div>
               </div>
                 `;
-          });
+            });
+            return innerHTML;
+          };
+
+          const showMore = () => {
+            i += 9;
+            document.getElementById("game_gallery").innerHTML += showNine(
+              i,
+              result
+            );
+            console.log(i);
+            if (i >= 18) {
+              seeMore.classList.add("d-none");
+            }
+          };
+
           document.querySelector(".page-list .articles").innerHTML = `
             ${welcome}
             <div class="row stick">
@@ -62,12 +84,15 @@ with both new and existing partners, industry executives, gamers, and social inf
               </select>
             </div>
             <div id="game_gallery" class="row">
-              ${articles}
+              ${showNine(0, result)}
             </div>
             <div class="row justify-content-center">
               <button id="see_more" class="btn btn_input col col-3"><h4>See More</h4></button>
             </div>
           `;
+
+          const seeMore = document.getElementById("see_more");
+          seeMore.addEventListener("click", showMore);
         })
         .then(() => {
           const observables = ".game_card";

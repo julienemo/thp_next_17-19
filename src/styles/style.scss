@@ -53,15 +53,18 @@ a {
   background-color: $title_red;
 }
 
-.external:hover {
+a:hover,
+a:focus {
   text-decoration: none;
+  color: $white;
 }
 
 // search
-.fa-search {
-  background-image: url("../images/search.svg");
-  height: 20px;
-  width: 20px;
+.form-control {
+  border-radius: 25px !important;
+  background-color: transparent !important;
+  border: 2px solid $white;
+  height: 50px !important;
 }
 //font
 .title_font {
@@ -79,8 +82,12 @@ a {
 }
 
 .btn_input {
+  padding: 0.5em 1em;
   border: none !important;
   border: 0px !important;
+  font-family: $title_font;
+  color: $white;
+  background-color: $filter_pink;
 }
 
 // nav search
@@ -133,10 +140,8 @@ footer {
 
 #game_site_btn {
   margin: 0 3em 3em 0;
-  padding: 0.5em 1em;
   display: flex;
   justify-content: flex-end;
-  border: none;
   font-size: 1.3em;
 }
 
@@ -177,4 +182,36 @@ iframe {
   text-align: center;
   pointer-events: none;
   color: #aaa;
+}
+
+// internal link hover
+a.internal,
+a.internal:visited {
+  text-decoration: none;
+  position: relative;
+  color: $white;
+
+  &:after {
+    content: "";
+    height: 0.1em;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    background: $white;
+    transition: 0.2s;
+  }
+
+  &:hover:after {
+    width: 100%;
+  }
+
+  &.block {
+    display: block;
+    padding: 0.5em;
+
+    &:hover {
+      background: $white;
+    }
+  }
 }

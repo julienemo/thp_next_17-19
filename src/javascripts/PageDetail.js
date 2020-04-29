@@ -1,14 +1,21 @@
-import { apiUrl, contentZone, handleException, limit } from "./index";
-import { cleanDate } from "./tools";
+import {
+  apiUrl,
+  defaultImg,
+  contentZone,
+  handleException,
+  visualDefault,
+} from "./index";
+import { cleanDate, noImage } from "./tools";
+import { observerAnimation } from "./Animation";
 
 export const showPlatforms = (platforms) => {
-  if (platforms === null) {
+  if (platforms == undefined || platforms == "" || platforms == "null") {
     return "";
   }
   let platformInnerHTML = "";
   platforms.forEach((el) => {
     platformInnerHTML += `
-    <a href="#games/?platform=${el.platform.slug}" class="internal">
+    <a href="#games/platform=${el.platform.slug}" class="internal">
       ${el.platform.name}
     </a> `;
   });
@@ -16,15 +23,16 @@ export const showPlatforms = (platforms) => {
 };
 
 export const showSameCategory = (category, categoryName) => {
-  console.log(categoryName);
+  if (category === null || category === undefined) {
+    return "";
+  }
   let categoryInnerHTML = "";
   category.forEach((el) => {
     categoryInnerHTML += `
-    <a href="#games/?${categoryName}=${el.slug}" class="internal">
+    <a href="#games/${categoryName}=${el.slug}" class="internal">
       ${el.name}
     </a> `;
   });
-  console.log(categoryInnerHTML);
   return categoryInnerHTML;
 };
 
@@ -33,29 +41,45 @@ export const PageDetail = (argument) => {
     let cleanedArgument = argument.replace(/\s+/g, "-");
 
     const showPurchase = (stores) => {
+      if (stores === (null || undefined)) {
+        return "NO PURCHASE OPTION YET";
+      }
       let innerHTML = "";
       stores.forEach((store) => {
-        innerHTML += `<a href="${store.url}" target="_blank" class="external white">${store.store.name}</a>, `;
+        innerHTML += `<a href="${store.url}" target="_blank" title="go to ${store.store.name}" class="external white">${store.store.name}</a>, `;
       });
       return innerHTML;
     };
 
-    const countVotes = (ratings) => {
+    const countVotes = (rating, ratings) => {
+      if (
+        rating == 0 ||
+        ratings === null ||
+        ratings === undefined ||
+        ratings.length === 0
+      ) {
+        return "";
+      }
       let counts = ratings.map((el) => el.count);
       let reducer = (accumulator, currentValue) => accumulator + currentValue;
-      return counts.reduce(reducer);
+      let votes = counts.reduce(reducer);
+      return `${rating}/5 - ${votes} votes`;
     };
 
     const fetchImages = (gameSlug, gameName) => {
-      fetch(`https://api.rawg.io/api/games/${gameSlug}/screenshots`)
+      fetch(
+        `https://api.rawg.io/api/games/${gameSlug}/screenshots${visualDefault}`
+      )
         .then((response) => response.json())
         .then((response) => {
-          let imgs = response.results.slice(0, limit);
           let screenshotZone = document.getElementById("screenshots");
-          imgs.forEach((img) => {
+          response.results.forEach((img) => {
             screenshotZone.innerHTML += `
             <div class="col col-6 stick pr-1">
-              <img class="screenshots" src=${img.image} alt="a screen shot of ${gameName}"/>
+              <img class="screenshots" src=${noImage(
+                img.image,
+                defaultImg
+              )} alt="a screen shot of ${gameName}"/>
             </div>`;
           });
         })
@@ -65,12 +89,10 @@ export const PageDetail = (argument) => {
     };
 
     const fetchYoutube = (gameSlug) => {
-      fetch(`${apiUrl}/${gameSlug}/youtube`)
+      fetch(`${apiUrl}/${gameSlug}/youtube${visualDefault}`)
         .then((response) => response.json())
         .then((response) => {
-          let videos = response.results
-            .sort((a, b) => (a.released < b.released ? 1 : -1))
-            .slice(0, limit);
+          let videos = response.results;
           let youtubeZone = document.getElementById("youtube");
           videos.forEach((video) => {
             youtubeZone.innerHTML += `
@@ -92,7 +114,6 @@ export const PageDetail = (argument) => {
 
     const fetchGame = (argument) => {
       let finalURL = apiUrl + "/" + argument;
-
       fetch(`${finalURL}`)
         .then((response) => response.json())
         .then((response) => {
@@ -118,21 +139,25 @@ export const PageDetail = (argument) => {
           pageContent.innerHTML = `
             <section class="page-detail mt-5">
               <div id="article" class="stick">
-                <div class="row game_cover_image" style='background-image: url("${background_image}");'>
-                  <a class="external" href="${website}" target="_blank"> <button id="game_site_btn" class="title_font red-bg white btn_input">Check Website  >> </button></a>
+                <div class="row game_cover_image" style='background-image: url("${noImage(
+                  background_image,
+                  defaultImg
+                )}");'>
+                  <a id="game_website" class="external" href="${website}" title="go to game website" target="_blank"> <button id="game_site_btn" class="btn btn_input">Check Website  >> </button></a>
                 </div>
 
                 <div class="row m-0 p-0 justify-content-between">
                   <h1 class="title title_font align_to_bottom">${name}</h1>
-                  <p id="rating" class="red title_font">${rating}/5 - ${countVotes(
-            ratings
-          )} votes</p>
+                  <p id="rating" class="red title_font">${countVotes(
+                    rating,
+                    ratings
+                  )}</p>
                 </div>
                 <div class="row stick"><p>${reddit_description}</p></div> 
 
                 <div class="row stick">
                   <h5 class="col stick_bottom col-12 title_font white">Plot</h5></div>
-                  <p class="col col-12">${description}</p>
+                  <p class="col stick col-12">${description}</p>
                 </div>
 
                 <div class="row stick">
@@ -169,7 +194,7 @@ export const PageDetail = (argument) => {
                   </div>
                 </div>
 
-                <div class="row stick" >
+                <div class="row game_attribute stick" >
                   <div class="col stick col-12">
                     <h3 class=" title_font red">BUY</h3>
                   </div>
@@ -178,7 +203,7 @@ export const PageDetail = (argument) => {
                   </div>
                 </div>
 
-                <div class="row stick" >
+                <div class="row game_attribute stick" >
                   <div class="col stick col-12">
                     <h3 class="title_font red">TRAILER</h3>
                   </div>
@@ -187,20 +212,21 @@ export const PageDetail = (argument) => {
                   </div>
                 </div>
 
-                <div id="screenshots" class="row stick">
+                <div id="screenshots" class="row game_attribute stick">
                   <div class="col stick col-12">
                     <h3 class="title_font red">SCREENSHOTS</h3>
                   </div>
                 </div>
 
-                <div id="youtube" class="row stick">
+                <div id="youtube" class="row game_attribute stick">
                   <div class="col stick col-12">
                     <h3 class="title_font red">YOUTUBE</h3>
                   </div>
                 </div>
               </div>
             </section>`;
-          if (publishers.length > 0) {
+
+          if (publishers !== (null || undefined)) {
             document.getElementById(
               "publishers"
             ).innerHTML = `${showSameCategory(publishers, "publishers")}`;
@@ -213,6 +239,9 @@ export const PageDetail = (argument) => {
                 Your browser does not support the video tag.
               </video>`;
           }
+          if (website === null || website === undefined || website === "") {
+            document.getElementById("game_website").classList.add("d-none");
+          }
           return { slug: slug, name: name };
         })
         .then((response) => {
@@ -221,6 +250,10 @@ export const PageDetail = (argument) => {
         })
         .then((response) => {
           fetchYoutube(response);
+        })
+        .then(() => {
+          const observables = ".game_attribute";
+          observerAnimation(observables);
         })
         .catch((error) => {
           handleException(error);

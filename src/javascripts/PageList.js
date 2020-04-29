@@ -1,6 +1,14 @@
 import { showPlatforms } from "./PageDetail";
-import { apiUrl, handleException, defaultImg } from "./index";
+import {
+  apiUrl,
+  handleException,
+  defaultImg,
+  newReleaseArgument,
+} from "./index";
 import { noImage } from "./tools";
+import { observerAnimation } from "./Animation";
+
+import { quickLink } from "./index";
 
 export const PageList = (argument = "") => {
   const welcome = `<div id="welcome_section" class="mx-0 my-3 p-0"><h1 id="welcome_title" class="title_font">Welcome,</h1><p class="welcome_text">The Hyper Progame is the world’s premier event for computer and video games and related products. At The Hyper Progame,
@@ -15,20 +23,22 @@ with both new and existing partners, industry executives, gamers, and social inf
 
     const fetchList = (argument) => {
       let finalURL = apiUrl;
-      if (argument) {
-        finalURL = apiUrl + argument;
+      if (quickLink[argument] == undefined) {
+        finalURL = apiUrl + newReleaseArgument + "&" + argument;
+      } else {
+        finalURL = apiUrl + quickLink[argument];
       }
-
       fetch(`${finalURL}`)
         .then((response) => response.json())
         .then((response) => {
           let result = response.results;
-          result.sort((a, b) => (a.released < b.released ? 1 : -1));
           result.forEach((article) => {
             articles += `
-              <div class="card game_card col-4">
+              <div id="${
+                article.slug || article.id
+              }" class="card game_card col-4">
                 <a href="#game/${
-                  article.slug
+                  article.slug || article.id
                 }"><img class="card-img-top" src="${noImage(
               article.background_image,
               defaultImg
@@ -44,7 +54,7 @@ with both new and existing partners, industry executives, gamers, and social inf
           document.querySelector(".page-list .articles").innerHTML = `
             ${welcome}
             <div class="row stick">
-              <select id="plateform_filter" class="custom-select btn_input red-bg white my-4 w-25">
+              <select id="platform_filter" class="custom-select btn_input red-bg white my-4 w-25">
                 <option selected>Open this select menu</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
@@ -54,7 +64,14 @@ with both new and existing partners, industry executives, gamers, and social inf
             <div id="game_gallery" class="row">
               ${articles}
             </div>
+            <div class="row justify-content-center">
+              <button id="see_more" class="btn btn_input col col-3"><h4>See More</h4></button>
+            </div>
           `;
+        })
+        .then(() => {
+          const observables = ".game_card";
+          observerAnimation(observables);
         })
         .catch((error) => {
           handleException(error);

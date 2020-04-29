@@ -10,20 +10,33 @@
       <div id="page_title" class="col m-0 p-0 title_font red">
         <h1>The Hyper Progame</h1>
       </div>
-      <form>
-        <div class="form-group has-search">
+      <form id="search_form">
+        <div class="form-inline">
           <span class="fa-search"></span>
           <input
-            id="user_input"
+            id="search_input"
             type="text"
             class="form-control"
-            placeholder="Search"
+            placeholder="type keys words separated by space"
           />
         </div>
       </form>
     </nav>
-
-    <section id="pageContent" class="white"></section>
+    <div class="row stick">
+      <section id="sideBar" class="white col stick col-2">
+        <a class="my-3 row side_btn" href="#games/this-week"
+          ><button class="btn btn_input">
+            This week
+          </button></a
+        >
+        <a class="my-3 row side_btn" href="#games/all-time-best"
+          ><button class="btn btn_input">
+            All-time Best
+          </button></a
+        >
+      </section>
+      <section id="pageContent" class="white col stick col-10"></section>
+    </div>
 
     <footer class="mx-0 p-0 my-3">
       <div class="row">

@@ -9915,14 +9915,17 @@ a {
   background-color: #fc141c;
 }
 
-.external:hover {
+a:hover,
+a:focus {
   text-decoration: none;
+  color: white;
 }
 
-.fa-search {
-  background-image: url(cc51b702c98798cd916ea5a3a8ca8b54.svg);
-  height: 20px;
-  width: 20px;
+.form-control {
+  border-radius: 25px !important;
+  background-color: transparent !important;
+  border: 2px solid white;
+  height: 50px !important;
 }
 
 .title_font {
@@ -9942,8 +9945,12 @@ a {
 }
 
 .btn_input {
+  padding: 0.5em 1em;
   border: none !important;
   border: 0px !important;
+  font-family: "Russo One Regular";
+  color: white;
+  background-color: #fc0404;
 }
 
 #user_search {
@@ -9992,10 +9999,8 @@ footer {
 
 #game_site_btn {
   margin: 0 3em 3em 0;
-  padding: 0.5em 1em;
   display: flex;
   justify-content: flex-end;
-  border: none;
   font-size: 1.3em;
 }
 
@@ -10035,4 +10040,35 @@ iframe {
   text-align: center;
   pointer-events: none;
   color: #aaa;
+}
+
+a.internal,
+a.internal:visited {
+  text-decoration: none;
+  position: relative;
+  color: white;
+}
+a.internal:after,
+a.internal:visited:after {
+  content: "";
+  height: 0.1em;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  background: white;
+  transition: 0.2s;
+}
+a.internal:hover:after,
+a.internal:visited:hover:after {
+  width: 100%;
+}
+a.internal.block,
+a.internal:visited.block {
+  display: block;
+  padding: 0.5em;
+}
+a.internal.block:hover,
+a.internal:visited.block:hover {
+  background: white;
 }

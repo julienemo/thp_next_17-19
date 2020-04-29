@@ -26,7 +26,7 @@ with both new and existing partners, industry executives, gamers, and social inf
           result.forEach((article) => {
             articles += `
               <div class="card game_card col-4">
-                <a href="#pagedetail/${
+                <a href="#game/${
                   article.slug
                 }"><img class="card-img-top" src="${
               article.background_image

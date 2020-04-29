@@ -5,7 +5,7 @@ export const showPlatforms = (platforms) => {
   let platformInnerHTML = "";
   platforms.forEach((el) => {
     platformInnerHTML += `
-    <a href="#pagelist/?platform=${el.platform.slug}" class="internal">
+    <a href="#games/?platform=${el.platform.slug}" class="internal">
       ${el.platform.name}
     </a> `;
   });
@@ -17,7 +17,7 @@ export const showSameCategory = (category, categoryName) => {
   let categoryInnerHTML = "";
   category.forEach((el) => {
     categoryInnerHTML += `
-    <a href="#pagelist/?${categoryName}=${el.slug}" class="internal">
+    <a href="#games/?${categoryName}=${el.slug}" class="internal">
       ${el.name}
     </a> `;
   });

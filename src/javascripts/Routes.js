@@ -3,6 +3,6 @@ import { PageDetail } from "./PageDetail";
 
 export const routes = {
   "": PageList,
-  pagelist: PageList,
-  pagedetail: PageDetail,
+  games: PageList,
+  game: PageDetail,
 };

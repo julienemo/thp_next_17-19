@@ -10022,6 +10022,10 @@ a:focus {
   -webkit-transform: translateY(0px);
 }
 
+#see_more {
+  margin: 6em 0px;
+}
+
 footer {
   color: white;
 }

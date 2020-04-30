@@ -7,8 +7,8 @@ import {
   limitPerPage,
   contentZone,
 } from "./index";
-import { noImage, reallyExists, releaseIndication } from "./tools";
-import { observerAnimation } from "./Animation";
+import { noImage, releaseIndication } from "./tools";
+import { observerAnimation, pushNewContent } from "./Animation";
 import { fillFilter } from "./Filter";
 import { ratingInfo, showSameCategory } from "./GameInfo";
 
@@ -69,17 +69,6 @@ with both new and existing partners, industry executives, gamers, and social inf
             return innerHTML;
           };
 
-          const showMore = () => {
-            i += limitPerPage;
-            document.getElementById("game_gallery").innerHTML += showNine(
-              i,
-              result
-            );
-            if (i >= limitPerPage * 2) {
-              seeMore.classList.add("d-none");
-            }
-          };
-
           document.querySelector(".page-list .articles").innerHTML = `
             ${welcome}
             <div class="row stick">
@@ -95,6 +84,17 @@ with both new and existing partners, industry executives, gamers, and social inf
           `;
 
           const seeMore = document.getElementById("see_more");
+          const showMore = () => {
+            i += limitPerPage;
+            document.getElementById("game_gallery").innerHTML += showNine(
+              i,
+              result
+            );
+            pushNewContent();
+            if (i >= limitPerPage * 2) {
+              seeMore.classList.add("d-none");
+            }
+          };
           seeMore.addEventListener("click", showMore);
 
           return platformSpecified;

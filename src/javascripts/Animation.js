@@ -32,8 +32,12 @@ export const observerAnimation = (observables) => {
 
 export const backToTop = () => {
   window.scrollTo({
-    top: 100,
-    left: 100,
+    top: 0,
     behavior: "smooth",
   });
+};
+
+export const pushNewContent = () => {
+  console.log("trying to follow");
+  window.scrollBy(0, window.innerHeight / 3);
 };

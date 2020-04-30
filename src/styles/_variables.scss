@@ -1,0 +1,130 @@
+// fonts
+@font-face {
+  font-family: "Yantramanav Medium";
+  src: url("../fonts/Yantramanav-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Russo One Regular";
+  src: url("../fonts/RussoOne-Regular.ttf");
+}
+
+// non-responsiveness-related vars
+$title_font: "Russo One Regular";
+$background_gray: #04060c;
+$primary_red: #fc0404;
+$white: white;
+
+$hover_transition: 300ms;
+
+$separator_height: 5px;
+$separator_width: 150px;
+
+$lg-min: 1367px;
+$md-max: 1366px;
+$md-min: 768px;
+$xs-max: 767px;
+
+@mixin title($color) {
+  font-family: $title_font;
+  color: $color;
+}
+
+@mixin no-margin() {
+  margin: 0 !important;
+}
+
+@mixin no_decoration() {
+  text-decoration: none;
+}
+
+@mixin scale_down() {
+  object-fit: scale-down;
+}
+
+@mixin transition_all_browser($transition) {
+  -webkit-transition: all $transition ease-out;
+  -moz-transition: all $transition ease-out;
+  -o-transition: all $transition ease-out;
+  -ms-transition: all $transition ease-out;
+  transition: all $transition ease-out;
+}
+
+// responsiveness-related settings
+@mixin body_settings() {
+  @media (min-width: $lg-min) {
+    padding: 8em 10em;
+  }
+  @media (max-width: $md-max) and (min-width: $md-min) {
+    padding: 6em 6em;
+  }
+  @media (max-width: $xs-max) {
+    padding: 2em 2em;
+  }
+}
+
+@mixin paragraph_font_size() {
+  @media (min-width: $lg-min) {
+    font-size: default;
+  }
+  @media (max-width: $md-max) and (min-width: $md-min) {
+    font-size: 1.3rem;
+  }
+  @media (max-width: $xs-max) {
+    font-size: 1.6rem;
+  }
+}
+
+@mixin flex_image() {
+  @media (min-width: $lg-min) {
+    height: 30em;
+  }
+  @media (max-width: $md-max) and (min-width: $md-min) {
+    height: 20em;
+  }
+  @media (max-width: $xs-max) {
+    height: 12em;
+  }
+}
+
+@mixin flex_col() {
+  @media (min-width: $lg-min) {
+    width: 33%;
+  }
+  @media (max-width: $md-max) and (min-width: $md-min) {
+    width: 50%;
+  }
+  @media (max-width: $xs-max) {
+    width: 80%;
+  }
+}
+
+@mixin flex_col_2() {
+  @media (min-width: $md-min) {
+    width: 50%;
+  }
+  @media (max-width: $xs-max) {
+    width: 100%;
+  }
+}
+
+@mixin flex_col_4() {
+  @media (min-width: $md-min) {
+    width: 25%;
+  }
+  @media (max-width: $xs-max) {
+    width: 100%;
+  }
+}
+
+@mixin right_bottom() {
+  @media (min-width: $lg-min) {
+    margin: 0 3em 3em 0;
+  }
+  @media (max-width: $md-max) and (min-width: $md-min) {
+    margin: 0 1em 1em 0;
+  }
+  @media (max-width: $xs-max) {
+    margin: 0 0.2em 0.2em 0;
+  }
+}

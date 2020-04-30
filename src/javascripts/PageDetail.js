@@ -64,7 +64,7 @@ export const PageDetail = (argument) => {
           let screenshotZone = document.getElementById("screenshots");
           response.results.forEach((img) => {
             screenshotZone.innerHTML += `
-            <div class="col col-6 stick pr-1">
+            <div class="flex_col_2 stick pr-1">
               <img class="screenshots" src=${noImage(
                 img.image,
                 defaultImg
@@ -85,12 +85,12 @@ export const PageDetail = (argument) => {
           let youtubeZone = document.getElementById("youtube");
           videos.forEach((video) => {
             youtubeZone.innerHTML += `
-            <div class="col col-6 stick iframe_container pr-1">
+            <div class="flex_col_2 stick iframe_container pr-1">
               <iframe width="640" height="360" class="stick youtube w-100" 
                  src="https://www.youtube.com/embed/${video.external_id}">
               </iframe>
-              <p class="title_font white">${video.name}</p>
-              <p class="title_font red">${video.channel_title} | ${cleanDate(
+              <p class="white_title">${video.name}</p>
+              <p class="red_title">${video.channel_title} | ${cleanDate(
               video.created
             )}</p>
             </div>`;
@@ -112,6 +112,7 @@ export const PageDetail = (argument) => {
           });
         });
     };
+
     const fetchGame = (argument) => {
       let finalURL = apiUrl + "/" + argument;
       fetch(`${finalURL}`)
@@ -148,8 +149,8 @@ export const PageDetail = (argument) => {
                 </div>
 
                 <div class="row m-0 p-0 justify-content-between">
-                  <h1 class="title title_font align_to_bottom">${name}</h1>
-                  <p id="rating" class="red title_font">${countVotes(
+                  <h1 class="title white_title align_to_bottom">${name}</h1>
+                  <p id="rating" class="red_title">${countVotes(
                     rating,
                     ratings
                   )}</p>
@@ -157,47 +158,47 @@ export const PageDetail = (argument) => {
                 <div class="row stick"><p>${reddit_description}</p></div> 
 
                 <div class="row stick">
-                  <h5 class="col stick_bottom col-12 title_font white">Plot</h5></div>
+                  <h5 class="col stick_bottom col-12 white_title">Plot</h5></div>
                   <p class="col stick col-12">${description}</p>
                 </div>
 
-                <div class="row stick">
-                  <div class="col stick col-3">
-                    <h5 class="stick_bottom title_font white">Release Date</h5>
+                <div class="row stick justify-content-center">
+                  <div class="flex_col_4 stick px-2">
+                    <h5 class="stick_bottom white_title">Release Date</h5>
                     <p>${released}</p>
                   </div>
 
-                  <div class="col stick col-3">
-                    <h5 class="stick_bottom title_font white">Developer</h5>
+                  <div class="flex_col_4 stick px-2">
+                    <h5 class="stick_bottom white_title">Developer</h5>
                     <p>${showSameCategory(developers, "developers")}</p>
                   </div>
 
-                  <div class="col stick col-3">
-                    <h5 class="stick_bottom title_font white">Platform</h5>
+                  <div class="flex_col_4 stick px-2">
+                    <h5 class="stick_bottom white_title">Platform</h5>
                     <p>${showPlatforms(platforms)}</p>
                   </div>
 
-                  <div class="col stick col-3">
-                    <h5 class="stick_bottom title_font white">Publisher</h5>
+                  <div class="flex_col_4 stick px-2">
+                    <h5 class="stick_bottom white_title">Publisher</h5>
                     <p id="publishers">none</p>
                   </div>
                 </div> 
 
-                <div class="row stick">
-                  <div class="col col-6 stick">
-                    <h5 class="stick_bottom title_font white">Tags</h5>
+                <div class="row stick justify-content-center">
+                  <div class="flex_col_2 px-2">
+                    <h5 class="stick_bottom white_title">Tags</h5>
                     <p>${showSameCategory(tags, "tags")}</p>
                   </div>
 
-                  <div class="col col-6 stick">
-                    <h5 class="stick_bottom title_font white">Genres</h5>
+                  <div class="flex_col_2 px-2">
+                    <h5 class="stick_bottom white_title">Genres</h5>
                     <p>${showSameCategory(genres, "genres")}</p>
                   </div>
                 </div>
 
                 <div class="row game_attribute stick" >
                   <div class="col stick col-12">
-                    <h3 class=" title_font red">BUY</h3>
+                    <h3 class="red_title">BUY</h3>
                   </div>
                   <div id="stores" class="col stick col-12">
                     <p>${showPurchase(stores)}</p>
@@ -206,28 +207,28 @@ export const PageDetail = (argument) => {
 
                 <div class="row game_attribute stick" >
                   <div class="col stick col-12">
-                    <h3 class="title_font red">TRAILER</h3>
+                    <h3 class="red_title">TRAILER</h3>
                   </div>
                   <div id="trailer" class="col stick col-12">
-                    <p class="font_title white">This game has no trailer clip</p>
+                    <p class="white">This game has no trailer clip</p>
                   </div>
                 </div>
 
-                <div id="screenshots" class="row game_attribute stick">
+                <div id="screenshots" class="row game_attribute stick justify-content-center">
                   <div class="col stick col-12">
-                    <h3 class="title_font red">SCREENSHOTS</h3>
+                    <h3 class="red_title">SCREENSHOTS</h3>
                   </div>
                 </div>
 
-                <div id="youtube" class="row game_attribute stick">
+                <div id="youtube" class="row game_attribute stick justify-content-center">
                   <div class="col stick col-12">
-                    <h3 class="title_font red">YOUTUBE</h3>
+                    <h3 class="red_title">YOUTUBE</h3>
                   </div>
                 </div>
 
-                <div id="similar" class="row game_attribute stick">
+                <div id="similar" class="row game_attribute stick justify-content-center">
                   <div class="col stick col-12">
-                    <h3 class="title_font red">SIMILAR GAMES</h3>
+                    <h3 class="red_title">SIMILAR GAMES</h3>
                   </div>
                 </div>
               </div>

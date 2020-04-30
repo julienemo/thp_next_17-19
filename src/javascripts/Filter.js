@@ -31,26 +31,6 @@ export const fillFilter = (platform) => {
             `platforms=${filter.value}&`
           );
         }
-
-        /*         if (currentFilters.match(/platforms=.*\&/) === null) {
-          window.location.href += `?platforms=${filter.value}`;
-        } else {
-          window.location.href = window.location.href.replace(
-            /platforms=.*\&/,
-            `platforms=${filter.value}\&`
-          );
-        } */
-        /*         const platform = filter.value;
-        if (response === false) {
-          console.log(`filter line 17`);
-          window.location.href += `&platforms=${platform}`;
-        } else {
-          console.log("filter line 19");
-          window.location.href = window.location.href.replace(
-            /platforms=.*\&/,
-            `plaforms=${response}\&`
-          );
-        } */
       };
 
       filter.addEventListener("change", actionFilter);

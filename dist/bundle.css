@@ -9883,25 +9883,89 @@ h3 {
   font-family: "Russo One Regular";
   src: url(eeee49799c79e2929b2949d82828baf6.ttf);
 }
-body {
+* {
+  color: white;
+}
+* body {
+  margin: 0 !important;
   min-height: 100vh;
-  margin: 0px;
-  padding: 30px 70px;
   background-color: #04060c;
 }
-
-nav {
-  margin: 0px !important;
-  padding: 0px 30px;
+@media (min-width: 1367px) {
+  * body {
+    padding: 8em 10em;
+  }
 }
-
-.stick {
-  margin: 0px;
-  padding: 0px;
+@media (max-width: 1366px) and (min-width: 768px) {
+  * body {
+    padding: 6em 6em;
+  }
+}
+@media (max-width: 767px) {
+  * body {
+    padding: 2em 2em;
+  }
 }
 
 a {
   color: white;
+}
+a:hover,
+a :focus {
+  text-decoration: none;
+  color: white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+p {
+  text-align: justify;
+}
+@media (min-width: 1367px) {
+  h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+p {
+    font-size: default;
+  }
+}
+@media (max-width: 1366px) and (min-width: 768px) {
+  h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+p {
+    font-size: 1.3rem;
+  }
+}
+@media (max-width: 767px) {
+  h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+p {
+    font-size: 1.6rem;
+  }
+}
+
+.stick {
+  margin: 0 !important;
+  padding: 0px;
 }
 
 .stick_bottom {
@@ -9909,35 +9973,8 @@ a {
   padding: 0px;
 }
 
-#separator {
-  height: 5px;
-  width: 150px;
-  background-color: #fc141c;
-}
-
-a:hover,
-a:focus {
-  text-decoration: none;
-  color: white;
-}
-
-.form-control {
-  border-radius: 25px !important;
-  background-color: transparent !important;
-  border: 2px solid white;
-  height: 50px !important;
-}
-
 .title_font {
   font-family: "Russo One Regular";
-}
-
-.red {
-  color: #fc141c;
-}
-
-.white {
-  color: white;
 }
 
 .red-bg {
@@ -9945,147 +9982,44 @@ a:focus {
 }
 
 .btn_input {
+  font-family: "Russo One Regular";
+  color: white;
   padding: 0.5em 1em;
-  border: none !important;
-  border: 0px !important;
-  font-family: "Russo One Regular";
-  color: white;
-  background-color: #fc0404;
-}
-
-#user_search {
-  border-radius: 20px;
-  background-color: transparent;
-  border: 2px solid white;
-  padding-left: 5px;
-}
-
-.game_card {
-  background-color: transparent !important;
-  padding: 0.8em;
-}
-
-.card-img-top {
-  height: 200px;
-  object-position: top;
-  object-fit: cover;
-}
-
-.card-body {
-  margin: 0px;
-  padding: 0.7em 0px;
-}
-
-.game_title {
-  font-family: "Russo One Regular";
-}
-
-.card-tail {
-  background: linear-gradient(#04060c, #04060c, transparent);
-  position: absolute;
-  top: 0;
-  left: 0;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  opacity: 0;
-  width: 100%;
-  height: #04060c;
-}
-
-.game_card:hover .card-tail {
-  opacity: 0.9;
-}
-
-.game_card .text {
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  transform: translateY(30px);
-  -webkit-transform: translateY(30px);
-}
-
-.game_card .text {
-  opacity: 0;
-  transition-delay: 0.2s;
-  transition-duration: 0.3s;
-}
-
-.game_card:hover .text,
-.game_card:focus .text {
-  opacity: 1;
-  transform: translateY(0px);
-  -webkit-transform: translateY(0px);
-}
-
-#see_more {
-  margin: 6em 0px;
-}
-
-footer {
-  color: white;
-}
-
-.game_cover_image {
-  margin: 3em 0px;
-  padding: 3em 0px;
-  width: 100% !important;
-  height: 500px !important;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-}
-
-#game_site_btn {
-  margin: 0 3em 3em 0;
-  display: flex;
-  justify-content: flex-end;
-  font-size: 1.3em;
-}
-
-#game_site_btn:hover {
-  text-decoration: none;
-}
-
-#game_trailer {
-  min-height: 200px;
-  width: 50%;
-  object-fit: fill;
-}
-
-iframe {
-  object-fit: scale-down;
   border: none;
+  background-color: #fc0404;
+  opacity: 1;
 }
 
-.screenshots {
-  width: 100%;
-  margin: 0px 0px 1em 0px;
-  object-position: top;
-  object-fit: scale-down;
+.white_title {
+  font-family: "Russo One Regular";
+  color: white;
 }
 
-.has-search .form-control {
-  padding-left: 2.375rem;
+.red_title {
+  font-family: "Russo One Regular";
+  color: #fc0404;
 }
 
-.has-search .form-control-feedback {
-  position: absolute;
-  z-index: 2;
-  display: block;
-  width: 2.375rem;
-  height: 2.375rem;
-  line-height: 2.375rem;
-  text-align: center;
-  pointer-events: none;
-  color: #aaa;
+@media (min-width: 768px) {
+  .flex_col_2 {
+    width: 50%;
+  }
+}
+@media (max-width: 767px) {
+  .flex_col_2 {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .flex_col_4 {
+    width: 25%;
+  }
+}
+@media (max-width: 767px) {
+  .flex_col_4 {
+    width: 100%;
+  }
 }
 
 a.internal,
@@ -10117,4 +10051,288 @@ a.internal:visited.block {
 a.internal.block:hover,
 a.internal:visited.block:hover {
   background: white;
+}
+@font-face {
+  font-family: "Yantramanav Medium";
+  src: url(db0d8b7ea207bc572544f92ea883f056.ttf);
+}
+@font-face {
+  font-family: "Russo One Regular";
+  src: url(eeee49799c79e2929b2949d82828baf6.ttf);
+}
+nav {
+  margin: 0 !important;
+}
+@media (min-width: 768px) {
+  nav {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 767px) {
+  nav {
+    justify-content: center;
+  }
+}
+
+.form-control {
+  width: 100%;
+  border-radius: 25px !important;
+  background-color: transparent !important;
+  border: 2px solid white;
+  height: 50px !important;
+}
+
+#search_form div {
+  display: flex;
+  flex-direction: row;
+}
+@media (min-width: 1367px) {
+  #search_form div #search_submit {
+    display: none;
+  }
+}
+@media (max-width: 1366px) {
+  #search_form div #search_submit {
+    width: 10em;
+    margin-left: -25px;
+    border: 2px solid white;
+    border-left: none;
+  }
+}
+
+#separator {
+  height: 5px;
+  width: 150px;
+  background-color: #fc0404;
+}
+@font-face {
+  font-family: "Yantramanav Medium";
+  src: url(db0d8b7ea207bc572544f92ea883f056.ttf);
+}
+@font-face {
+  font-family: "Russo One Regular";
+  src: url(eeee49799c79e2929b2949d82828baf6.ttf);
+}
+@media (min-width: 1367px) {
+  #platform_filter {
+    width: 33%;
+  }
+}
+@media (max-width: 1366px) and (min-width: 768px) {
+  #platform_filter {
+    width: 50%;
+  }
+}
+@media (max-width: 767px) {
+  #platform_filter {
+    width: 80%;
+  }
+}
+
+.game_card {
+  background-color: transparent !important;
+  padding: 0.8em;
+}
+@media (min-width: 1367px) {
+  .game_card {
+    width: 33%;
+  }
+}
+@media (max-width: 1366px) and (min-width: 768px) {
+  .game_card {
+    width: 50%;
+  }
+}
+@media (max-width: 767px) {
+  .game_card {
+    width: 80%;
+  }
+}
+.game_card .card-img-top {
+  object-position: top;
+  object-fit: cover;
+}
+@media (min-width: 1367px) {
+  .game_card .card-img-top {
+    height: 30em;
+  }
+}
+@media (max-width: 1366px) and (min-width: 768px) {
+  .game_card .card-img-top {
+    height: 20em;
+  }
+}
+@media (max-width: 767px) {
+  .game_card .card-img-top {
+    height: 12em;
+  }
+}
+.game_card .card-tail {
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
+  -ms-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+  background: linear-gradient(#04060c, #04060c, #04060c, transparent);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: #04060c;
+}
+.game_card .card-body {
+  margin: 0 !important;
+  padding: 0.7em 0px;
+}
+
+.game_card:hover .card-tail {
+  opacity: 0.9;
+}
+
+.game_card .text {
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
+  -ms-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+  transform: translateY(30px);
+  -webkit-transform: translateY(30px);
+}
+
+.game_card .text {
+  opacity: 0;
+  transition-delay: 0.2s;
+  transition-duration: 0.3s;
+}
+
+.game_card:hover .text,
+.game_card:focus .text {
+  opacity: 1;
+  transform: translateY(0px);
+  -webkit-transform: translateY(0px);
+}
+@media (max-width: 767px) {
+  .game_card:hover .text,
+.game_card:focus .text {
+    font-size: 1em;
+  }
+}
+
+#see_more {
+  margin: 6em 0px;
+}
+@media (min-width: 1367px) {
+  #see_more {
+    width: 33%;
+  }
+}
+@media (max-width: 1366px) and (min-width: 768px) {
+  #see_more {
+    width: 50%;
+  }
+}
+@media (max-width: 767px) {
+  #see_more {
+    width: 80%;
+  }
+}
+@font-face {
+  font-family: "Yantramanav Medium";
+  src: url(db0d8b7ea207bc572544f92ea883f056.ttf);
+}
+@font-face {
+  font-family: "Russo One Regular";
+  src: url(eeee49799c79e2929b2949d82828baf6.ttf);
+}
+.game_cover_image {
+  margin: 3em 0px;
+  width: 100% !important;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+@media (min-width: 1367px) {
+  .game_cover_image {
+    height: 30em;
+  }
+}
+@media (max-width: 1366px) and (min-width: 768px) {
+  .game_cover_image {
+    height: 20em;
+  }
+}
+@media (max-width: 767px) {
+  .game_cover_image {
+    height: 12em;
+  }
+}
+
+#game_site_btn {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.3em;
+}
+@media (min-width: 1367px) {
+  #game_site_btn {
+    margin: 0 3em 3em 0;
+  }
+}
+@media (max-width: 1366px) and (min-width: 768px) {
+  #game_site_btn {
+    margin: 0 1em 1em 0;
+  }
+}
+@media (max-width: 767px) {
+  #game_site_btn {
+    margin: 0 0.2em 0.2em 0;
+  }
+}
+
+#game_site_btn:hover {
+  text-decoration: none;
+}
+
+#game_trailer {
+  object-fit: fill;
+}
+@media (min-width: 1367px) {
+  #game_trailer {
+    height: 30em;
+  }
+}
+@media (max-width: 1366px) and (min-width: 768px) {
+  #game_trailer {
+    height: 20em;
+  }
+}
+@media (max-width: 767px) {
+  #game_trailer {
+    height: 12em;
+  }
+}
+@media (min-width: 768px) {
+  #game_trailer {
+    width: 50%;
+  }
+}
+@media (max-width: 767px) {
+  #game_trailer {
+    width: 100%;
+  }
+}
+
+iframe {
+  object-fit: scale-down;
+  border: none;
+}
+
+.screenshots {
+  width: 100%;
+  margin: 0px 0px 1em 0px;
+  object-position: top;
+  object-fit: scale-down;
 }

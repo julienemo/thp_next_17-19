@@ -1,5 +1,8 @@
 import "bootstrap";
 import "../styles/style.scss";
+import "../styles/nav.scss";
+import "../styles/gamelist.scss";
+import "../styles/gamedetail.scss";
 
 import { routes } from "./Routes";
 import { cleanDate } from "./tools";
@@ -39,7 +42,7 @@ export const speChars = /[^a-zA-Z0-9\-\s ]/g;
 export const handleException = (error) => {
   console.log(error);
   contentZone.innerHTML =
-    "<p class='white title_font'>Sorry, an error occurred. Your games can't load. Please verify spelling and retry, or contact the Progame organizer.</p>";
+    "<p class='white_title'>Sorry, an error occurred. Your games can't load. Please verify spelling and retry, or contact the Progame organizer.</p>";
 };
 
 const searchForm = document.getElementById("search_form");

@@ -1,239 +1,82 @@
 @import "~bootstrap/scss/bootstrap";
+@import "./variables.scss";
 
-@font-face {
-  font-family: "Yantramanav Medium";
-  src: url("../fonts/Yantramanav-Medium.ttf");
-}
-
-@font-face {
-  font-family: "Russo One Regular";
-  src: url("../fonts/RussoOne-Regular.ttf");
-}
-
-$background_gray: #04060c;
-$title_red: #fc141c;
-$filter_pink: #fc0404;
-$white: white;
-
-$padding_body_x: 70px;
-$padding_body_y: 30px;
-
-$separator_height: 5px;
-$separator_width: 150px;
-
-$game_card_height: 200px;
-
-$title_font: "Russo One Regular";
-
-body {
-  min-height: 100vh;
-  margin: 0px;
-  padding: $padding_body_y $padding_body_x;
-  background-color: $background_gray;
-}
-
-nav {
-  margin: 0px !important;
-  padding: 0px $padding_body_y;
-}
-
-.stick {
-  margin: 0px;
-  padding: 0px;
+* {
+  color: $white;
+  body {
+    @include no_margin();
+    @include body_settings();
+    min-height: 100vh;
+    background-color: $background_gray;
+  }
 }
 
 a {
   color: $white;
+  &:hover,
+  :focus {
+    @include no_decoration();
+    color: $white;
+  }
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+p {
+  text-align: justify;
+  @include paragraph_font_size();
+}
+
+.stick {
+  @include no_margin();
+  padding: 0px;
+}
+
 .stick_bottom {
   margin: 2em 0px 0px 0px;
   padding: 0px;
 }
-#separator {
-  height: $separator_height;
-  width: $separator_width;
-  background-color: $title_red;
-}
 
-a:hover,
-a:focus {
-  text-decoration: none;
-  color: $white;
-}
-
-// search
-.form-control {
-  border-radius: 25px !important;
-  background-color: transparent !important;
-  border: 2px solid $white;
-  height: 50px !important;
-}
-//font
 .title_font {
   font-family: $title_font;
 }
-// color
-.red {
-  color: $title_red;
-}
-.white {
-  color: $white;
-}
+
 .red-bg {
-  background-color: $filter_pink;
+  background-color: $primary_red;
 }
 
 .btn_input {
+  @include title($white);
   padding: 0.5em 1em;
-  border: none !important;
-  border: 0px !important;
-  font-family: $title_font;
-  color: $white;
-  background-color: $filter_pink;
-}
-
-// nav search
-#user_search {
-  border-radius: 20px;
-  background-color: transparent;
-  border: 2px solid $white;
-  padding-left: 5px;
-}
-
-// game cards
-.game_card {
-  background-color: transparent !important;
-  padding: 0.8em;
-}
-
-.card-img-top {
-  height: $game_card_height;
-  object-position: top;
-  object-fit: cover;
-}
-
-.card-body {
-  margin: 0px;
-  padding: 0.7em 0px;
-}
-
-.game_title {
-  font-family: "Russo One Regular";
-}
-
-.card-tail {
-  background: linear-gradient($background_gray, $background_gray, transparent);
-  position: absolute;
-  top: 0;
-  left: 0;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  opacity: 0;
-  width: 100%;
-  height: $background_gray;
-}
-.game_card:hover .card-tail {
-  opacity: 0.9;
-}
-
-.game_card .text {
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  transform: translateY(30px);
-  -webkit-transform: translateY(30px);
-}
-.game_card .text {
-  opacity: 0;
-  transition-delay: 0.2s;
-  transition-duration: 0.3s;
-}
-.game_card:hover .text,
-.game_card:focus .text {
-  opacity: 1;
-  transform: translateY(0px);
-  -webkit-transform: translateY(0px);
-}
-
-// see more
-#see_more {
-  margin: 6em 0px;
-}
-
-// footer
-footer {
-  color: white;
-}
-
-// detail page
-.game_cover_image {
-  margin: 3em 0px;
-  padding: 3em 0px;
-  width: 100% !important;
-  height: 500px !important;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-}
-
-#game_site_btn {
-  margin: 0 3em 3em 0;
-  display: flex;
-  justify-content: flex-end;
-  font-size: 1.3em;
-}
-
-#game_site_btn:hover {
-  text-decoration: none;
-}
-
-#game_trailer {
-  min-height: 200px;
-  width: 50%;
-  object-fit: fill;
-}
-
-iframe {
-  object-fit: scale-down;
   border: none;
+  background-color: $primary_red;
+  opacity: 1;
 }
 
-.screenshots {
-  width: 100%;
-  margin: 0px 0px 1em 0px;
-  object-position: top;
-  object-fit: scale-down;
+.white_title {
+  @include title($white);
+}
+.red_title {
+  @include title($primary_red);
 }
 
-// searching
-.has-search .form-control {
-  padding-left: 2.375rem;
+.flex_col_2 {
+  @include flex_col_2();
 }
 
-.has-search .form-control-feedback {
-  position: absolute;
-  z-index: 2;
-  display: block;
-  width: 2.375rem;
-  height: 2.375rem;
-  line-height: 2.375rem;
-  text-align: center;
-  pointer-events: none;
-  color: #aaa;
+.flex_col_4 {
+  @include flex_col_4();
 }
 
 // internal link hover
 a.internal,
 a.internal:visited {
-  text-decoration: none;
+  @include no_decoration();
   position: relative;
   color: $white;
 

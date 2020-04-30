@@ -24,10 +24,19 @@ Intersection observer on card
 
 Hover on card, game info over photo [tuto here](https://www.w3docs.com/tools/code-editor/4135)
 
-"See more" btn fills page with new elements and pushes them up. CF `scroll`, `scrollTo()`, `scrollBy()`, `scrollIntoView`. To test more effects.
+"See more" btn fills page with new elements and pushes them up. CF `scroll`, `scrollTo()`, `scrollBy()`, `scrollIntoView`. To test more effects
 
 **Detail view**
 
 Intersection observer on info sections (only the ones on lower page, from purchase)
 
 Smooth scrolling to top when clicking on a similar game
+
+---
+
+**Questions**
+
+1. any tricks chaining queries ?
+2. any way to make `p` and all `h`s proportionally larger without setting one by one ?
+3. Is it possible to do a `scrollBy()` with `smooth` behaviour ?
+4. Is there any way to change url without changing window location ?

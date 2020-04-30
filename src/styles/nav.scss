@@ -1,0 +1,46 @@
+@import "./variables.scss";
+
+// nav
+nav {
+  @include no_margin();
+  @media (min-width: $md-min) {
+    justify-content: space-between;
+  }
+  @media (max-width: $xs-max) {
+    justify-content: center;
+  }
+}
+
+// search
+.form-control {
+  width: 100%;
+  border-radius: 25px !important;
+  background-color: transparent !important;
+  border: 2px solid $white;
+  height: 50px !important;
+}
+
+#search_form div {
+  display: flex;
+  flex-direction: row;
+
+  @media (min-width: $lg-min) {
+    #search_submit {
+      display: none;
+    }
+  }
+  @media (max-width: $md-max) {
+    #search_submit {
+      width: 10em;
+      margin-left: -25px;
+      border: 2px solid $white;
+      border-left: none;
+    }
+  }
+}
+// footer separator
+#separator {
+  height: $separator_height;
+  width: $separator_width;
+  background-color: $primary_red;
+}

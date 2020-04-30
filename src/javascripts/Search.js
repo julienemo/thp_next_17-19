@@ -7,5 +7,5 @@ export const submitSearch = (searchInput) => {
     .replace(speChars, "")
     .split(" ")
     .join(",");
-  window.location.href = `#games/?search=${keywords}`;
+  window.location.href = `#games/search=${keywords}`;
 };

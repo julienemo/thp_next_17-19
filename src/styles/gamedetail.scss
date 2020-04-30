@@ -1,0 +1,42 @@
+@import "./variables.scss";
+
+.game_cover_image {
+  @include flex_image();
+  margin: 3em 0px;
+  width: 100% !important;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+#game_site_btn {
+  @include right_bottom();
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.3em;
+}
+
+#game_site_btn:hover {
+  @include no_decoration();
+}
+
+#game_trailer {
+  @include flex_image();
+  @include flex_col_2();
+  object-fit: fill;
+}
+
+iframe {
+  @include scale_down();
+  border: none;
+}
+
+.screenshots {
+  width: 100%;
+  margin: 0px 0px 1em 0px;
+  object-position: top;
+  @include scale_down();
+}

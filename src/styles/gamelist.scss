@@ -1,0 +1,68 @@
+@import "./variables.scss";
+
+// filter select
+#platform_filter {
+  @include flex_col();
+}
+
+.game_card {
+  @include flex_col();
+  background-color: transparent !important;
+  padding: 0.8em;
+  .card-img-top {
+    @include flex_image();
+    object-position: top;
+    object-fit: cover;
+  }
+
+  .card-tail {
+    @include transition_all_browser($hover_transition);
+    background: linear-gradient(
+      $background_gray,
+      $background_gray,
+      $background_gray,
+      transparent
+    );
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: $background_gray;
+  }
+
+  .card-body {
+    @include no_margin();
+    padding: 0.7em 0px;
+  }
+}
+
+.game_card:hover .card-tail {
+  opacity: 0.9;
+}
+
+.game_card .text {
+  @include transition_all_browser($hover_transition);
+  transform: translateY(30px);
+  -webkit-transform: translateY(30px);
+}
+.game_card .text {
+  opacity: 0;
+  transition-delay: 0.2s;
+  transition-duration: 0.3s;
+}
+.game_card:hover .text,
+.game_card:focus .text {
+  opacity: 1;
+  transform: translateY(0px);
+  -webkit-transform: translateY(0px);
+  @media (max-width: $xs-max) {
+    font-size: 1em;
+  }
+}
+
+// "see more" button
+#see_more {
+  @include flex_col();
+  margin: 6em 0px;
+}

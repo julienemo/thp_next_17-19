@@ -9916,50 +9916,26 @@ a :focus {
   color: white;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
 input,
 p {
   text-align: justify;
 }
 @media (min-width: 1367px) {
-  h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-input,
+  input,
 p {
     font-size: default;
   }
 }
 @media (max-width: 1366px) and (min-width: 768px) {
-  h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-input,
+  input,
 p {
     font-size: 1.3rem;
   }
 }
 @media (max-width: 767px) {
-  h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-input,
+  input,
 p {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
 }
 

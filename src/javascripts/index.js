@@ -50,8 +50,6 @@ const searchInput = document.getElementById("search_input");
 
 const setRoute = () => {
   let path = window.location.hash.substring(1).split("/");
-  let platformSpecified;
-  let platform = window.location.hash.match(/platforms=(\w*)/);
   let pageArgument = path[1] || "";
   routes[path[0]](pageArgument);
   return true;
@@ -68,4 +66,4 @@ searchForm.addEventListener("submit", (e) => {
   submitSearch(searchInput);
 });
 
-fillSideBar();
+fillSideBar(thisWeekArgument, orderByRating);

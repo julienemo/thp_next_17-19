@@ -15,7 +15,13 @@ export const noImage = (image, defaultImg) => {
 };
 
 export const reallyExists = (thing) => {
-  return !(thing == 0 || thing === null || thing === undefined || thing === 0);
+  return !(
+    thing == 0 ||
+    thing === [] ||
+    thing === null ||
+    thing === undefined ||
+    thing === 0
+  );
 };
 
 export const releaseIndication = (date) => {

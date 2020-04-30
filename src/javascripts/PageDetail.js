@@ -1,126 +1,26 @@
-import {
-  apiUrl,
-  defaultImg,
-  contentZone,
-  handleException,
-  visualDefault,
-} from "./index";
-
-import { cleanDate, noImage, reallyExists } from "./tools";
+import { noImage } from "./tools";
 import { observerAnimation, backToTop } from "./Animation";
-import { fillSingleCard } from "./PageList";
-import { showSameCategory } from "./GameInfo";
-
-export const showPlatforms = (platforms) => {
-  if (platforms == undefined || platforms == "" || platforms == "null") {
-    return "";
-  }
-  let platformInnerHTML = "";
-  platforms.forEach((el) => {
-    platformInnerHTML += `
-    <a href="#games/platforms=${el.platform.id}" class="internal">
-      ${el.platform.name}
-    </a> `;
-  });
-  return platformInnerHTML;
-};
+import { apiUrl, defaultImg, contentZone, handleException } from "./index";
+import {
+  showSameCategory,
+  showPlatforms,
+  showPurchase,
+  ratingInfo,
+  fetchImages,
+  fetchYoutube,
+  fetchSimilar,
+} from "./GameInfo";
 
 export const PageDetail = (argument) => {
   const preparePage = () => {
     let cleanedArgument = argument.replace(/\s+/g, "-");
-
-    const showPurchase = (stores) => {
-      if (stores === (null || undefined)) {
-        return "NO PURCHASE OPTION YET";
-      }
-      let innerHTML = "";
-      stores.forEach((store) => {
-        innerHTML += `<a href="${store.url}" target="_blank" title="go to ${store.store.name}" class="external white">${store.store.name}</a>, `;
-      });
-      return innerHTML;
-    };
-
-    const countVotes = (rating, ratings) => {
-      if (
-        rating == 0 ||
-        ratings === null ||
-        ratings === undefined ||
-        ratings.length === 0
-      ) {
-        return "";
-      }
-      let counts = ratings.map((el) => el.count);
-      let reducer = (accumulator, currentValue) => accumulator + currentValue;
-      let votes = counts.reduce(reducer);
-      return `${rating}/5 - ${votes} votes`;
-    };
-
-    const fetchImages = (gameSlug, gameName) => {
-      fetch(
-        `https://api.rawg.io/api/games/${gameSlug}/screenshots${visualDefault}`
-      )
-        .then((response) => response.json())
-        .then((response) => {
-          let screenshotZone = document.getElementById("screenshots");
-          response.results.forEach((img) => {
-            screenshotZone.innerHTML += `
-            <div class="flex_col_2 stick pr-1">
-              <img class="screenshots" src=${noImage(
-                img.image,
-                defaultImg
-              )} alt="a screen shot of ${gameName}"/>
-            </div>`;
-          });
-        })
-        .catch((error) => {
-          handleException(error);
-        });
-    };
-
-    const fetchYoutube = (gameSlug) => {
-      fetch(`${apiUrl}/${gameSlug}/youtube${visualDefault}`)
-        .then((response) => response.json())
-        .then((response) => {
-          let videos = response.results;
-          let youtubeZone = document.getElementById("youtube");
-          if (!reallyExists(videos)) {
-            youtubeZone.classList.add("d-none");
-          }
-          videos.forEach((video) => {
-            youtubeZone.innerHTML += `
-            <div class="flex_col_2 stick iframe_container pr-1">
-              <iframe width="640" height="360" class="stick youtube w-100" 
-                 src="https://www.youtube.com/embed/${video.external_id}">
-              </iframe>
-              <p class="white_title">${video.name}</p>
-              <p class="red_title">${video.channel_title} | ${cleanDate(
-              video.created
-            )}</p>
-            </div>`;
-          });
-        })
-        .catch((error) => {
-          handleException(error);
-        });
-    };
-
-    const fetchSimilar = (gameId) => {
-      fetch(`${apiUrl}/${gameId}/suggested${visualDefault}`)
-        .then((response) => response.json())
-        .then((response) => {
-          let games = response.results;
-          let similarZone = document.getElementById("similar");
-          games.forEach((game) => {
-            similarZone.innerHTML += fillSingleCard(game);
-          });
-        });
-    };
 
     const fetchGame = (argument) => {
       let finalURL = apiUrl + "/" + argument;
       fetch(`${finalURL}`)
         .then((response) => response.json())
         .then((response) => {
+          let game = response;
           let {
             id,
             slug,
@@ -136,8 +36,6 @@ export const PageDetail = (argument) => {
             released,
             description,
             platforms,
-            rating,
-            ratings,
             stores,
           } = response;
           backToTop();
@@ -153,10 +51,7 @@ export const PageDetail = (argument) => {
 
                 <div class="row m-0 p-0 justify-content-between">
                   <h1 class="title white_title align_to_bottom">${name}</h1>
-                  <p id="rating" class="red_title">${countVotes(
-                    rating,
-                    ratings
-                  )}</p>
+                  <p id="rating" class="red_title">${ratingInfo(game)}</p>
                 </div>
                 <div class="row stick"><p>${reddit_description}</p></div> 
 
@@ -199,14 +94,7 @@ export const PageDetail = (argument) => {
                   </div>
                 </div>
 
-                <div class="row game_attribute stick" >
-                  <div class="col stick col-12">
-                    <h3 class="red_title">BUY</h3>
-                  </div>
-                  <div id="stores" class="col stick col-12">
-                    <p>${showPurchase(stores)}</p>
-                  </div>
-                </div>
+              ${showPurchase(stores)}
 
                 <div id="trailer_zone" class="row game_attribute stick" >
                   <div class="col stick col-12">

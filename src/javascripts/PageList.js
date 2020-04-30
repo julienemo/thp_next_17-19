@@ -1,4 +1,3 @@
-import { showPlatforms } from "./PageDetail";
 import {
   apiUrl,
   handleException,
@@ -11,37 +10,10 @@ import {
   limitPerPage,
   contentZone,
 } from "./index";
-import { noImage, releaseIndication, reallyExists } from "./tools";
-import { observerAnimation, pushNewContent } from "./Animation";
+import { reallyExists } from "./tools";
+import { observerAnimation, pushNewContent, backToTop } from "./Animation";
 import { fillFilter } from "./Filter";
-import { ratingInfo, showSameCategory } from "./GameInfo";
-
-export const fillSingleCard = (game) => {
-  let text = `<a href="#game/${game.slug || game.id}"><div id="${
-    game.slug || game.id
-  }" class="card game_card">
-        <img class="card-img-top card_head" src="${noImage(
-          game.background_image,
-          defaultImg
-        )}" alt="cover_image_${game.slug}">
-        
-        <div class="card-img-top card-tail white_title p-5">
-          <p class="text">${releaseIndication(game.released)}:${
-    game.released
-  }</p>
-          <p class="text">${ratingInfo(game)}</p>
-          <p class="text">Genres: ${showSameCategory(game.genres, "genre")}</p>
-
-        </div></a>
-        <div class="card-body">
-          <h5 class="card-title m-0 p-0 white_title">${game.name}</h5>
-          <p class="platform_info card-text">${showPlatforms(
-            game.platforms
-          )}</p>
-        </div>
-      </div>`;
-  return text;
-};
+import { fillSingleCard } from "./GameInfo";
 
 export const PageList = (argument = "") => {
   const welcome = `<div id="welcome_section" class="mx-0 my-3 p-0"><h1 id="welcome_title" class="white_title">Welcome,</h1><p class="welcome_text">The Hyper Progame is the world’s premier event for computer and video games and related products. At The Hyper Progame,
@@ -94,6 +66,7 @@ with both new and existing partners, industry executives, gamers, and social inf
             });
             return innerHTML;
           };
+          backToTop();
 
           document.querySelector(".page-list .articles").innerHTML = `
             ${welcome}
@@ -124,7 +97,7 @@ with both new and existing partners, industry executives, gamers, and social inf
           seeMore.addEventListener("click", showMore);
         })
         .then(() => {
-          fillFilter();
+          fillFilter(thisWeekArgument, orderByRating);
         })
         .then(() => {
           const observables = ".game_card";

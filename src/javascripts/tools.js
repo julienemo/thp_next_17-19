@@ -19,8 +19,6 @@ export const reallyExists = (thing) => {
 };
 
 export const releaseIndication = (date) => {
-  console.log(timeFrom);
-  console.log(date);
   if (timeFrom > date) {
     return "RELEASED";
   } else {

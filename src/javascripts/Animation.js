@@ -38,6 +38,5 @@ export const backToTop = () => {
 };
 
 export const pushNewContent = () => {
-  console.log("trying to follow");
   window.scrollBy(0, window.innerHeight / 3);
 };

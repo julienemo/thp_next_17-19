@@ -4,10 +4,14 @@ import {
   handleException,
   defaultImg,
   newReleaseArgument,
+  thisWeekArgument,
+  orderByDate,
+  orderByRating,
+  limitToEntry,
   limitPerPage,
   contentZone,
 } from "./index";
-import { noImage, releaseIndication } from "./tools";
+import { noImage, releaseIndication, reallyExists } from "./tools";
 import { observerAnimation, pushNewContent } from "./Animation";
 import { fillFilter } from "./Filter";
 import { ratingInfo, showSameCategory } from "./GameInfo";
@@ -26,7 +30,7 @@ export const fillSingleCard = (game) => {
     game.released
   }</p>
           <p class="text">${ratingInfo(game)}</p>
-          <p class="text">Genres: ${showSameCategory(game.genre, "genre")}</p>
+          <p class="text">Genres: ${showSameCategory(game.genres, "genre")}</p>
 
         </div></a>
         <div class="card-body">
@@ -39,8 +43,7 @@ export const fillSingleCard = (game) => {
   return text;
 };
 
-export const PageList = (argument = "", platformSpecified) => {
-  console.log(`platform ${platformSpecified}`);
+export const PageList = (argument = "") => {
   const welcome = `<div id="welcome_section" class="mx-0 my-3 p-0"><h1 id="welcome_title" class="white_title">Welcome,</h1><p class="welcome_text">The Hyper Progame is the world’s premier event for computer and video games and related products. At The Hyper Progame,
 the video game industry’s top talent pack the Los Angeles Convention Center, connecting tens of thousands of the best,
 brightest, and most innovative in the interactive entertainment industry. For three exciting days, leading-edge companies,
@@ -53,7 +56,30 @@ with both new and existing partners, industry executives, gamers, and social inf
 
     const fetchList = (argument) => {
       let finalURL = "";
-      finalURL = apiUrl + newReleaseArgument + "&" + argument;
+      if (!reallyExists(argument)) {
+        finalURL =
+          apiUrl +
+          "?" +
+          newReleaseArgument +
+          "&" +
+          orderByDate +
+          "&" +
+          limitToEntry;
+      } else if (argument === "this-week") {
+        finalURL =
+          apiUrl +
+          "?" +
+          thisWeekArgument +
+          "&" +
+          orderByDate +
+          "&" +
+          limitToEntry;
+      } else if (argument === "all-time-best") {
+        finalURL = apiUrl + "?" + orderByRating + "&" + limitToEntry;
+      } else {
+        finalURL =
+          apiUrl + "?" + argument + "&" + orderByDate + "&" + limitToEntry;
+      }
       fetch(finalURL)
         .then((response) => response.json())
         .then((response) => {
@@ -96,12 +122,9 @@ with both new and existing partners, industry executives, gamers, and social inf
             }
           };
           seeMore.addEventListener("click", showMore);
-
-          return platformSpecified;
         })
-        .then((response) => {
-          console.log(`response ${response}`);
-          fillFilter(response);
+        .then(() => {
+          fillFilter();
         })
         .then(() => {
           const observables = ".game_card";

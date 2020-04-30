@@ -1,6 +1,6 @@
 import { platformUrl, handleException } from "./index";
 
-export const fillFilter = (platform) => {
+export const fillFilter = () => {
   fetch(platformUrl)
     .then((response) => response.json())
     .then((response) => {
@@ -15,7 +15,6 @@ export const fillFilter = (platform) => {
 
       const actionFilter = () => {
         let currentFilters = window.location.href;
-        console.log(currentFilters);
         if (currentFilters.match(/\=/) === null) {
           window.location.href += `#games/platforms=${filter.value}`;
         } else if (currentFilters.match(/platforms/) === null) {

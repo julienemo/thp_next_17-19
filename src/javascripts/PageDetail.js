@@ -6,7 +6,7 @@ import {
   visualDefault,
 } from "./index";
 
-import { cleanDate, noImage } from "./tools";
+import { cleanDate, noImage, reallyExists } from "./tools";
 import { observerAnimation, backToTop } from "./Animation";
 import { fillSingleCard } from "./PageList";
 import { showSameCategory } from "./GameInfo";
@@ -83,6 +83,9 @@ export const PageDetail = (argument) => {
         .then((response) => {
           let videos = response.results;
           let youtubeZone = document.getElementById("youtube");
+          if (!reallyExists(videos)) {
+            youtubeZone.classList.add("d-none");
+          }
           videos.forEach((video) => {
             youtubeZone.innerHTML += `
             <div class="flex_col_2 stick iframe_container pr-1">
@@ -178,9 +181,9 @@ export const PageDetail = (argument) => {
                     <p>${showPlatforms(platforms)}</p>
                   </div>
 
-                  <div class="flex_col_4 stick px-2">
+                  <div id="publisher_zone" class="flex_col_4 stick px-2">
                     <h5 class="stick_bottom white_title">Publisher</h5>
-                    <p id="publishers">none</p>
+                    <p id="publishers"></p>
                   </div>
                 </div> 
 
@@ -205,12 +208,12 @@ export const PageDetail = (argument) => {
                   </div>
                 </div>
 
-                <div class="row game_attribute stick" >
+                <div id="trailer_zone" class="row game_attribute stick" >
                   <div class="col stick col-12">
                     <h3 class="red_title">TRAILER</h3>
                   </div>
                   <div id="trailer" class="col stick col-12">
-                    <p class="white">This game has no trailer clip</p>
+                    <p></p>
                   </div>
                 </div>
 
@@ -238,6 +241,8 @@ export const PageDetail = (argument) => {
             document.getElementById(
               "publishers"
             ).innerHTML = `${showSameCategory(publishers, "publishers")}`;
+          } else {
+            document.getElementById("publisher_zone").className.add("d-none");
           }
 
           if (clip) {
@@ -246,6 +251,8 @@ export const PageDetail = (argument) => {
                 <source src="${clip.clips["320"]}" type="video/mp4">
                 Your browser does not support the video tag.
               </video>`;
+          } else {
+            document.getElementById("trailer_zone").classList.add("d-none");
           }
           if (website === null || website === undefined || website === "") {
             document.getElementById("game_website").classList.add("d-none");
@@ -258,11 +265,9 @@ export const PageDetail = (argument) => {
         })
         .then((response) => {
           fetchYoutube(response.slug);
-          console.log(response);
           return response;
         })
         .then((response) => {
-          console.log(response.id);
           fetchSimilar(response.id);
         })
         .then(() => {

@@ -2,7 +2,6 @@ import { noImage, reallyExists } from "./tools";
 import { visualLimit } from "./index";
 
 export const ratingInfo = (game) => {
-  console.log(game.rating);
   if (!reallyExists(game.rating)) {
     return "NO RATING YET";
   }

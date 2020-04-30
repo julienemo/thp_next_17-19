@@ -40,3 +40,7 @@ let myotherString =
 
 let result = myotherString.match(/(platforms=\w*&)/);
 console.log(result);
+
+let today = "2020.02.23";
+let otherday = "2020.02.22";
+console.log(otherday < today);

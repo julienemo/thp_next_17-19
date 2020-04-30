@@ -5,28 +5,38 @@ import {
   defaultImg,
   newReleaseArgument,
   limitPerPage,
-  quickLink,
   contentZone,
 } from "./index";
-import { noImage } from "./tools";
+import { noImage, reallyExists, releaseIndication } from "./tools";
 import { observerAnimation } from "./Animation";
 import { fillFilter } from "./Filter";
+import { ratingInfo, showSameCategory } from "./GameInfo";
 
 export const fillSingleCard = (game) => {
-  return `<div id="${game.slug || game.id}" class="card game_card col-4">
-        <a href="#game/${
-          game.slug || game.id
-        }"><img class="card-img-top" src="${noImage(
-    game.background_image,
-    defaultImg
-  )}" alt="cover_image_${game.slug}">
-        </a>
-        <div class="card-body">
+  let text = `<a href="#game/${game.slug || game.id}"><div id="${
+    game.slug || game.id
+  }" class="card game_card col-4">
+        <img class="card-img-top card_head" src="${noImage(
+          game.background_image,
+          defaultImg
+        )}" alt="cover_image_${game.slug}">
+        
+        <div class="card-img-top card-tail title_font white p-5">
+          <p class="text">${releaseIndication(game.released)}:${
+    game.released
+  }</p>
+          <p class="text">${ratingInfo(game)}</p>
+          <p class="text">Genres: ${showSameCategory(game.genre, "genre")}</p>
+
+        </div></a>
+        <div class="card-body white">
           <h5 class="card-title m-0 p-0 game_title">${game.name}</h5>
-          <p class="card-text">${showPlatforms(game.platforms)}</p>
-          <p class="card-text">${game.released}</p>
+          <p class="platform_info card-text">${showPlatforms(
+            game.platforms
+          )}</p>
         </div>
       </div>`;
+  return text;
 };
 
 export const PageList = (argument = "", platformSpecified) => {
@@ -86,6 +96,7 @@ with both new and existing partners, industry executives, gamers, and social inf
 
           const seeMore = document.getElementById("see_more");
           seeMore.addEventListener("click", showMore);
+
           return platformSpecified;
         })
         .then((response) => {

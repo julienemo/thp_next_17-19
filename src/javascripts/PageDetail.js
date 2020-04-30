@@ -9,6 +9,7 @@ import {
 import { cleanDate, noImage } from "./tools";
 import { observerAnimation, backToTop } from "./Animation";
 import { fillSingleCard } from "./PageList";
+import { showSameCategory } from "./GameInfo";
 
 export const showPlatforms = (platforms) => {
   if (platforms == undefined || platforms == "" || platforms == "null") {
@@ -22,20 +23,6 @@ export const showPlatforms = (platforms) => {
     </a> `;
   });
   return platformInnerHTML;
-};
-
-export const showSameCategory = (category, categoryName) => {
-  if (category === null || category === undefined) {
-    return "";
-  }
-  let categoryInnerHTML = "";
-  category.forEach((el) => {
-    categoryInnerHTML += `
-    <a href="#games/${categoryName}=${el.slug}" class="internal">
-      ${el.name}
-    </a> `;
-  });
-  return categoryInnerHTML;
 };
 
 export const PageDetail = (argument) => {

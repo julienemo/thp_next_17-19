@@ -9980,6 +9980,48 @@ a:focus {
   font-family: "Russo One Regular";
 }
 
+.card-tail {
+  background: linear-gradient(#04060c, #04060c, transparent);
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
+  -ms-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+  opacity: 0;
+  width: 100%;
+  height: #04060c;
+}
+
+.game_card:hover .card-tail {
+  opacity: 0.9;
+}
+
+.game_card .text {
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
+  -ms-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+  transform: translateY(30px);
+  -webkit-transform: translateY(30px);
+}
+
+.game_card .text {
+  opacity: 0;
+  transition-delay: 0.2s;
+  transition-duration: 0.3s;
+}
+
+.game_card:hover .text,
+.game_card:focus .text {
+  opacity: 1;
+  transform: translateY(0px);
+  -webkit-transform: translateY(0px);
+}
+
 footer {
   color: white;
 }

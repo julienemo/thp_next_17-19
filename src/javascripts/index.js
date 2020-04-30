@@ -9,11 +9,11 @@ import { fillSideBar } from "./Sidebar";
 var moment = require("moment");
 
 const now = new Date();
-const timeFrom = cleanDate(now);
+export const timeFrom = cleanDate(now);
 const timeTo = cleanDate(moment(now).add(1, "year"));
 const timeWeek = cleanDate(moment(now).add(7, "days"));
 
-const visualLimit = 4; // show not more than 4 screenshots, 4 videos, 4 similar games
+export const visualLimit = 4; // show not more than 4 screenshots, 4 videos, 4 similar games
 const entryLimit = 27; // show not more than 27 games per query
 const platformLimit = 7; // show only 7 platforms with most games in filter
 

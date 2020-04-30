@@ -21,6 +21,8 @@ $padding_body_y: 30px;
 $separator_height: 5px;
 $separator_width: 150px;
 
+$game_card_height: 200px;
+
 $title_font: "Russo One Regular";
 
 body {
@@ -105,7 +107,7 @@ a:focus {
 }
 
 .card-img-top {
-  height: 200px;
+  height: $game_card_height;
   object-position: top;
   object-fit: cover;
 }
@@ -117,6 +119,45 @@ a:focus {
 
 .game_title {
   font-family: "Russo One Regular";
+}
+
+.card-tail {
+  background: linear-gradient($background_gray, $background_gray, transparent);
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
+  -ms-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+  opacity: 0;
+  width: 100%;
+  height: $background_gray;
+}
+.game_card:hover .card-tail {
+  opacity: 0.9;
+}
+
+.game_card .text {
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
+  -ms-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+  transform: translateY(30px);
+  -webkit-transform: translateY(30px);
+}
+.game_card .text {
+  opacity: 0;
+  transition-delay: 0.2s;
+  transition-duration: 0.3s;
+}
+.game_card:hover .text,
+.game_card:focus .text {
+  opacity: 1;
+  transform: translateY(0px);
+  -webkit-transform: translateY(0px);
 }
 
 // footer

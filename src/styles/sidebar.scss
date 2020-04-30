@@ -1,0 +1,23 @@
+@import "./variables.scss";
+
+#sideBar {
+  background-color: transparent;
+  z-index: 1000000;
+  position: sticky;
+  top: 10em;
+  padding: 3em;
+  height: 30vh;
+  width: 25vh;
+  @include hide_left();
+  button {
+    width: 10em;
+    padding-top: 1em;
+    margin-top: 2em;
+    animation: shadow_glow 3s infinite;
+  }
+  @keyframes shadow_glow {
+    50% {
+      box-shadow: 0 10px 60px 30px $background_gray;
+    }
+  }
+}

@@ -10336,3 +10336,46 @@ iframe {
   object-position: top;
   object-fit: scale-down;
 }
+@font-face {
+  font-family: "Yantramanav Medium";
+  src: url(db0d8b7ea207bc572544f92ea883f056.ttf);
+}
+@font-face {
+  font-family: "Russo One Regular";
+  src: url(eeee49799c79e2929b2949d82828baf6.ttf);
+}
+#sideBar {
+  background-color: transparent;
+  z-index: 1000000;
+  position: sticky;
+  top: 10em;
+  padding: 3em;
+  height: 30vh;
+  width: 25vh;
+}
+@media (min-width: 1367px) {
+  #sideBar {
+    margin-left: -200px;
+  }
+}
+@media (max-width: 1366px) and (min-width: 768px) {
+  #sideBar {
+    margin-left: -140px;
+  }
+}
+@media (max-width: 767px) {
+  #sideBar {
+    margin-left: -80px;
+  }
+}
+#sideBar button {
+  width: 10em;
+  padding-top: 1em;
+  margin-top: 2em;
+  animation: shadow_glow 3s infinite;
+}
+@keyframes shadow_glow {
+  50% {
+    box-shadow: 0 10px 60px 30px #04060c;
+  }
+}

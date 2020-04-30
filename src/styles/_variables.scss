@@ -128,3 +128,15 @@ $xs-max: 767px;
     margin: 0 0.2em 0.2em 0;
   }
 }
+
+@mixin hide_left() {
+  @media (min-width: $lg-min) {
+    margin-left: -200px;
+  }
+  @media (max-width: $md-max) and (min-width: $md-min) {
+    margin-left: -140px;
+  }
+  @media (max-width: $xs-max) {
+    margin-left: -80px;
+  }
+}

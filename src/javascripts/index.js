@@ -3,6 +3,7 @@ import "../styles/style.scss";
 import "../styles/nav.scss";
 import "../styles/gamelist.scss";
 import "../styles/gamedetail.scss";
+import "../styles/sidebar.scss";
 
 import { routes } from "./Routes";
 import { cleanDate } from "./tools";
@@ -67,4 +68,4 @@ searchForm.addEventListener("submit", (e) => {
   submitSearch(searchInput);
 });
 
-//fillSideBar(thisWeekArgument, allTimeBestArgument);
+fillSideBar();

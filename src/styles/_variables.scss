@@ -140,3 +140,9 @@ $xs-max: 767px;
     margin-left: -80px;
   }
 }
+
+@mixin limit_row_width() {
+  @media (min-width: $lg-min) {
+    max-width: 1440px;
+  }
+}

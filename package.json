@@ -1,6 +1,6 @@
 {
-  "name": "julie_front_starter",
-  "version": "0.0.1",
+  "name": "julie_hyper_progame_2028",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/julienemo/thp_next_16.git"
+    "url": "git+https://github.com/julienemo/thp_next_17-19.git"
   },
   "author": "Julie Kwok",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/julienemo/thp_next_16/issues"
+    "url": "https://github.com/julienemo/thp_next_17-19/issues"
   },
-  "homepage": "https://github.com/julienemo/thp_next_16#readme",
+  "homepage": "https://github.com/julienemo/thp_next_17-19#readme",
   "devDependencies": {
     "dotenv-webpack": "^1.7.0"
   },

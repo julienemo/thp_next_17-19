@@ -9939,6 +9939,12 @@ p {
   }
 }
 
+@media (min-width: 1367px) {
+  .row {
+    max-width: 1440px;
+  }
+}
+
 .stick {
   margin: 0 !important;
   padding: 0px;

@@ -26,6 +26,10 @@ p {
   @include paragraph_font_size();
 }
 
+.row {
+  @include limit_row_width();
+}
+
 .stick {
   @include no_margin();
   padding: 0px;

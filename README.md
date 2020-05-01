@@ -1,4 +1,4 @@
-### Project: NOT INTO GAMING !
+### Project: The Hyper Progame 2028
 
 Demo [here](https://julienemo.github.io/thp_next_17-19/)
 
